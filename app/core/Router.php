@@ -1,6 +1,7 @@
 <?php
 require_once '../app/controllers/HomeController.php';
 require_once '../app/controllers/NoticiasController.php';
+require_once '../app/controllers/NotFoundController.php';
 
 class Router {
     public function dispatch($url) {
@@ -12,8 +13,12 @@ class Router {
 
         $controllerName = ucfirst($controllerName) . 'Controller';
 
-        $controller = new $controllerName();
+        if (!class_exists($controllerName)) {
+            $controllerName = 'NotFoundController';
+        }
 
+        $controller = new $controllerName();
+        
         $controller->index();
     }
 }
