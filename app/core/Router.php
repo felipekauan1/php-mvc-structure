@@ -18,8 +18,16 @@ class Router {
         }
 
         $controller = new $controllerName();
+
+        $actionName = $parts[1] ?? 'index';
         
-        $controller->index();
+        if (!method_exists($controller, $actionName)) {
+            $controllerName = 'NotFoundController';
+            $controller = new $controllerName();
+            $actionName = 'index';
+        }
+
+        $controller->$actionName();
     }
 }
 
