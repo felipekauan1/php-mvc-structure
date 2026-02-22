@@ -8,5 +8,8 @@
 <body>
     <h1>Home</h1>
     <p>Está é a pagina Home</p>
+    <p>O meu nome é: <?= $nome ?></p>
+    <p>A minha idade é: <?= $idade ?></p>
+    <p>O meu e-mail é: <?= $email ?></p>
 </body>
 </html>
