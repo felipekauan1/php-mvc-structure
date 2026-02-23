@@ -8,5 +8,11 @@
 <body>
     <h1>Noticias</h1>
     <p>Está é a pagina de Noticias</p>
+    <hr>
+    <ul>
+        <li>Uma noticia - 1</li>
+        <li>Outra noticia - 2</li>
+        <li>Mais uma noticia - 3</li>
+    </ul>
 </body>
 </html>
