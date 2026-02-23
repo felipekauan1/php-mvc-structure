@@ -27,7 +27,9 @@ class Router {
             $actionName = 'index';
         }
 
-        $controller->$actionName();
+        $params = array_slice($parts, 2);
+
+        call_user_func_array([$controller, $actionName], $params);
     }
 }
 
