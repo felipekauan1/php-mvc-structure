@@ -1,6 +1,9 @@
 <?php
-require_once '../app/controllers/HomeController.php';
-require_once '../app/controllers/errors/HttpErrorController.php';
+
+namespace App\Core;
+
+use App\Controllers\HomeController;
+use App\Controllers\Errors\HttpErrorController;
 
 class Router {
     public function dispatch($url) {
