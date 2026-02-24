@@ -1,7 +1,7 @@
 <?php
 require_once '../app/controllers/HomeController.php';
 require_once '../app/controllers/NoticiasController.php';
-require_once '../app/controllers/NotFoundController.php';
+require_once '../app/controllers/HttpErrorController.php';
 
 class Router {
     public function dispatch($url) {
@@ -11,20 +11,22 @@ class Router {
 
         $controllerName = $parts[0] ?? 'Home';
 
+        $actionName = $parts[1] ?? 'index';
+
         $controllerName = ucfirst($controllerName) . 'Controller';
 
         if (!class_exists($controllerName)) {
-            $controllerName = 'NotFoundController';
+            $controller = new HttpErrorController();
+            $controller->notFound();
+            return;
         }
 
         $controller = new $controllerName();
-
-        $actionName = $parts[1] ?? 'index';
         
         if (!method_exists($controller, $actionName)) {
-            $controllerName = 'NotFoundController';
-            $controller = new $controllerName();
-            $actionName = 'index';
+            $controller = new HttpErrorController();
+            $controller->notFound();
+            return;
         }
 
         $params = array_slice($parts, 2);
