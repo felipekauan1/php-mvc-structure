@@ -1,0 +1,11 @@
+{
+    "name": "felipe/php-mvc-structure",
+    "description": "php-mvc-structure",
+    "authors": [
+        {
+            "name": "Felipe Kauãn",
+            "email": "felipekauan30@outlook.com"
+        }
+    ],
+    "require": {}
+}
