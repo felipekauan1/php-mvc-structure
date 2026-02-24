@@ -13,9 +13,9 @@ class Router {
 
         $controllerName = $parts[0] ?? 'Home';
 
-        $actionName = $parts[1] ?? 'index';
+        $controllerName = 'App\Controllers\\' . ucfirst($controllerName) . 'Controller';
 
-        $controllerName = ucfirst($controllerName) . 'Controller';
+        $actionName = $parts[1] ?? 'index';
 
         if (!class_exists($controllerName)) {
             $controller = new HttpErrorController();
