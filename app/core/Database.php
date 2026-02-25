@@ -41,6 +41,34 @@ class Database {
         return false;
     }
 
+    // retorna um único resultado da consulta
+    public function fetch($sql, $params = []): array {
+        $stmt = $this->query($sql, $params);
+        return $stmt->fetch();
+    }
+
+    // retorna um array com dados da consulta
+    public function fetchAll($sql, $params = []): array {
+        $stmt = $this->query($sql, $params);
+        return $stmt->fetchAll();
+    }
+
+    // retorna o rowCount
+    public function execute($sql, $params = []): int {
+        $stmt = $this->query($sql, $params);
+        return $stmt->rowCount();
+    }
+
+    // retorna o último ID inserido
+    public function lastInsertId($sql, $params = []): int {
+        return $this->connection->lastInsertId();
+    }
+
+    // retorna o número de linhas afetadas
+    public function rowCount($sql, $params = []): int {
+        return $this->connection->rowCount();
+    }
+
     public function query($sql, $params = []) {
         try {
             $stmt = $this->connection->prepare($sql);

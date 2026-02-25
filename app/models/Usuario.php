@@ -14,10 +14,24 @@ class Usuario extends Model {
         ];
     }
 
-    public function testeDb() {
-        $sql = 'SELECT * FROM usuarios';
-        $resultado = $this->db->query($sql);
-        return $resultado->fetch();
+    public function createUser($name) {
+        $sql = 'INSERT INTO usuarios (nome) VALUES (:nome)';
+        $params = ['nome' => $name];
+        return $this->db->execute($sql, $params);
+    }
+
+    public function getAllUsers() {
+        return $this->db->fetchAll('SELECT * FROM usuarios');
+    }
+
+    public function getUsersById($id) {
+        $sql = 'SELECT * FROM usuarios WHERE id = :id';
+        $params = ['id' => $id];
+        return $this->db->fetch($sql, $params);
+    }
+    
+    public function getUsersCount() {
+        return $this->db->fetch('SELECT COUNT(*) as count FROM usuarios')['count'];
     }
 }
 
