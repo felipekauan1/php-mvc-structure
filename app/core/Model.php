@@ -2,13 +2,13 @@
 
 namespace App\Core;
 
-use App\core\Database;
+use App\Core\Database;
 
 abstract class Model {
     protected $db;
 
     public function __construct() {
-        $this->db = new Database();
+        $this->db = Database::getInstance();
     }
 }
 
