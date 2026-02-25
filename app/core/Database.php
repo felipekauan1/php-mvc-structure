@@ -18,13 +18,9 @@ class Database {
     }
 
     public function connect() {
-        $host = 'localhost';
-        $dbname = 'mvc';
-        $username = 'root';
-        $password = '@root1707';
-        $charset = 'utf8mb4';
+        $databaseConfig = config('database');
 
-        $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+        $dsn = "mysql:host={$databaseConfig['host']};dbname={$databaseConfig['dbname']};charset={$databaseConfig['charset']}";
 
         $options = [
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
@@ -32,7 +28,7 @@ class Database {
         ];
 
         try {
-            $this->connection = new \PDO($dsn, $username, $password, $options);
+            $this->connection = new \PDO($dsn, $databaseConfig['username'], $databaseConfig['password'], $options);
             return;
         } catch (\PDOException $e) {
             throw new \Exception('Erro de conexão DB: ' . $e->getMessage());
