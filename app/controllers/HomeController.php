@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Core\Database;
 use App\Models\Usuario;
+
 
 class HomeController extends Controller {
     public function index() {
